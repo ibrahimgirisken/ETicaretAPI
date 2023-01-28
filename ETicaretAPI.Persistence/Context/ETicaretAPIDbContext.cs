@@ -3,6 +3,7 @@ using ETicaretAPI.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,8 @@ namespace ETicaretAPI.Persistence.Context
                 _ = data.State switch
                 {
                     EntityState.Added => data.Entity.CreatedDate = DateTime.Now,
-                    EntityState.Modified => data.Entity.UpdateDate = DateTime.Now
+                    EntityState.Modified => data.Entity.UpdateDate = DateTime.Now,
+                    _=> DateTime.Now
                 };
             }
             return await base.SaveChangesAsync(cancellationToken);
